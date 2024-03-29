@@ -1,0 +1,22 @@
+# Use Node.js image as base
+FROM node:18
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install Strapi dependencies
+RUN npm install
+
+# RUN npm run build
+
+# Copy Strapi app files
+COPY . .
+
+# Expose the Strapi port
+EXPOSE 1337
+
+# Start Strapi
+CMD ["npm", "run", "develop"]
